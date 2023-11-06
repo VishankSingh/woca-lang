@@ -1,2 +1,8 @@
 *.out
 src/*.o
+hello.out
+src/AST.o
+src/lexer.o
+src/main.o
+src/parser.o
+src/token.o
