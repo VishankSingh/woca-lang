@@ -82,7 +82,7 @@ AST_T* parser_parse_expr(parser_T* parser)
     switch (parser->current_token->type)
     {
         case TOKEN_STRING: return parser_parse_string(parser);
-        //case TOKEN_ID: return parser_parse_id(parser);
+        case TOKEN_ID: return parser_parse_id(parser);
         default:
             printf("Unexpected token '%s' with type '%d'\n", 
                     parser->current_token->value, 
