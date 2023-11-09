@@ -40,15 +40,10 @@ AST_T* parser_parse_statement(parser_T* parser)
 {
     switch (parser->current_token->type)
     {
-        case TOKEN_ID:
-            return parser_parse_id(parser);
-        default:
-            printf("Unexpected token '%s' with type '%d'\n", 
-                    parser->current_token->value, 
-                    parser->current_token->type
-            );
-            exit(1);
+        case TOKEN_ID: return parser_parse_id(parser);
     }
+
+    return init_ast(AST_NOOP);
 }
 
 AST_T* parser_parse_statements(parser_T* parser)
@@ -58,6 +53,7 @@ AST_T* parser_parse_statements(parser_T* parser)
 
     AST_T* ast_statement = parser_parse_statement(parser);
     compound->compound_value[0] = ast_statement;
+    compound->compound_size += 1;
 
     while (parser->current_token->type == TOKEN_SEMI)
     {
